@@ -27,6 +27,17 @@ body {
 		}
     button {
    background-color:yellow;
+   font-size: 24px;
+   border-radius: 7px;
+    }
+    #number-input {
+      width: 150px;
+      height: 30px;
+      border-radius: 7px;
+      background-color: rgb(255, 255, 125);
+    }
+    #input:hover {
+    background color: aquamarine;
     }
     </style>
 </head>
@@ -35,9 +46,9 @@ body {
     <h1>Number Guessing Game</h1>
 <button id="start-button">Start Game</button>
 <div id="game-container" style="display:none">
-  <label for="number-input">Enter a number between 1 and 100:</label>
-  <input type="number" id="number-input" min="1" max="100">
-  <button id="submit-button">Submit</button>
+  <label for="number-input"><h2>Enter a number between 1 and 100:</h2></label>
+  <input type="number" id="number-input" min="1" max="100"><br><br><br>
+  <button id="submit-button">Submit</button><br>
   <p id="message"></p>
 </center>
 <script>
