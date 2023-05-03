@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #error-message {
+  color: red;
+} 
+body {
+			font-family: Arial, sans-serif;
+			text-align: center;
+        background-image: url("https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1409.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+       color: red;
+        /* height: 800px;
+        width: 100%;
+       */
+        
+		}
+		h1 {
+			font-size: 2em;
+			margin-top: 1em;
+		}
+    button {
+   background-color:yellow;
+    }
+    </style>
+</head>
+<body>
+    <center>
+    <h1>Number Guessing Game</h1>
+<button id="start-button">Start Game</button>
+<div id="game-container" style="display:none">
+  <label for="number-input">Enter a number between 1 and 100:</label>
+  <input type="number" id="number-input" min="1" max="100">
+  <button id="submit-button">Submit</button>
+  <p id="message"></p>
+</center>
+<script>
+    // Get HTML elements
+const startButton = document.getElementById('start-button');
+const gameContainer = document.getElementById('game-container');
+const numberInput = document.getElementById('number-input');
+const submitButton = document.getElementById('submit-button');
+const message = document.getElementById('message');
+
+// Set up game state variables
+let answer;
+let attemptsLeft;
+
+// Function to start the game
+function startGame() {
+  // Reset game state variables
+  answer = Math.floor(Math.random() * 100) + 1;
+  attemptsLeft = 5;
+
+  // Hide start button and show game container
+  startButton.style.display = 'none';
+  gameContainer.style.display = 'block';
+}
+
+// Function to handle user input and computer guesses
+function handleSubmit() {
+  const userInput = Number(numberInput.value);
+
+  // Check for invalid input
+  if (isNaN(userInput) || userInput < 1 || userInput > 100) {
+    message.textContent = 'Invalid input. Please enter a number between 1 and 100.';
+    return;
+  }
+
+  attemptsLeft--;
+
+  if (userInput === answer) {
+    message.textContent = 'Congratulations! The computer guessed your number!';
+    submitButton.disabled = true;
+    return;
+  } else if (attemptsLeft === 0) {
+    message.textContent = `The computer guessed ${answer}. Sorry, the computer was unable to guess your number within 5 attempts. You win!`;
+    submitButton.disabled = true;
+    return;
+  }
+
+  // Make a guess
+  let guess;
+  do {
+    guess = Math.floor(Math.random() * 100) + 1;
+  } while (guess === answer);
+
+  message.textContent = `The computer guessed ${guess}.`;
+
+  // Disable submit button if out of attempts
+  if (attemptsLeft === 5) {
+    submitButton.disabled = true;
+  }
+}
+
+// Add event listeners
+startButton.addEventListener('click', startGame);
+submitButton.addEventListener('click', handleSubmit);
+
+</script>
+</div>
+</body>
+</html>
